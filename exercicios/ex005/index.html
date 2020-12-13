@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semantica e formatação de textos</title>
+    <style> 
+        mark {
+            background-color: limegreen; 
+        }
+    </style> <!--Sobrescreve o padrão mark yellow-->
+</head>
+<body>
+    <h1>Principais formatações</h1>
+    <h2>Negrito / Destaque</h2>
+    <p>
+        Nessa frase temos um <b>termo em negrito.</b> usando tag &lt;b&gt; (Não semântica)
+    </p>
+    <p>
+        Nesta frase, teho um <strong>termo em destaque</strong> usando a tag &lt;strong&gt; (Semântica)
+    </p>
+    <h2>Itálico / Ênfase</h2>
+    <p>Nesta frase temos um <i>termo em Itálico</i>, usando a tag &lt;i&gt; (Não semantico)</p>
+    <p>
+        Nesta frase temos um <em>termo em ênfase</em> usando a tag &lt;em&gt; (Semântica)
+    </p>
+    <h2>Semântica</h2>
+    <p>
+        Eu moro na <address>R Venezuela  - Maringá PR</address>
+    </p> 
+    <h2>Texto marcado</h2>   
+    <p>Podemos também criar um <mark style="background-color: rgb(0, 255, 255);">
+        texto marcado que sobrescreve o padrão definido (override)
+    </mark>e usa a tag &lt;mark&gt;</p>
+    <p>
+        E em outro parágrafo, <mark>outra marcação definida na Head,</mark> herda o default definido no style
+    </p>
+    <h2>Texto grande e pequeno</h2>
+    <p>Estamos criando um <big>texto grande</big> e um <small>texto pequeno</small> nesse parágrafo</p>
+    <h2>Texto deletado</h2>
+    <p>Texto <del>como excluido</del>, mas não deve ser considerado</p>
+    <h2>Texto inserido</h2>
+    <p>Indica que o texto foi <ins>adicionado depois</ins></p>
+    <p>Existe também <u>sublinhado</u> (Não semântica)</p>
+    <h2>Texto sobrescrito</h2>
+    <p>Para inserir texto do tipo x<sup>2</sup> + 20</p>
+    <h2>Texto subscrito</h2>
+    <p>Para inserir texto do tipo H<sub>2</sub>O</p>
+</body>
+</html>
