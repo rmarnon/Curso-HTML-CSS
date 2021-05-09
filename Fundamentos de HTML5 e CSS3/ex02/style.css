@@ -1,0 +1,30 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+}
+
+p {
+    width: 400px;
+    background: #ff8;
+    text-align: justify;
+    line-height: 1;
+    font-family: sans-serif;
+    margin: 20px 80px 100px 40px;
+    border: solid #aaa;
+    border-width: 10px 30px 50px 15px;
+    padding: 35px 50px 20px 0;
+}
+
+/*
+    A largura de 400px ira subtrair as laterais das bordas: 15+30px, 
+    além do padding: 0+50px, ficando com os 305px do conteudo escrito.
+*/
