@@ -18,3 +18,11 @@ h2 {
 p {
   text-align: justify;
 }
+
+.footer {
+  text-align: right;
+}
+
+#footer {
+  text-align: left;
+}
