@@ -1,6 +1,5 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { EventEmitter } from 'events';
 import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { UniqueIdService } from '../../services/unique-id/unique-id.service';
 })
 
 export class LikeWidgetComponent implements OnInit {
-  @Output() public liked = new EventEmitter();
+  @Output() public liked = new EventEmitter<void>();
   @Input() public likes = 0;
   @Input() public id = null;
 
@@ -22,6 +21,10 @@ export class LikeWidgetComponent implements OnInit {
     if (!this.id) {
       this.id = this.uniqueIdService.generateUnitIdWithPrefix('like-widget');
     }
+  }
+
+  public like(): void {
+   this.liked.emit();
   }
 
 }
