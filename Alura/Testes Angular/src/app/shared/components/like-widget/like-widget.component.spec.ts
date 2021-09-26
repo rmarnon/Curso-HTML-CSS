@@ -1,25 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LikeWidgetComponent } from './like-widget.component';
+import { UniqueIdService } from '../../services/unique-id/unique-id.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 describe(LikeWidgetComponent.name, () => {
 
-  let component: LikeWidgetComponent;
   let fixture: ComponentFixture<LikeWidgetComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LikeWidgetComponent ]
+      imports: [FontAwesomeModule],
+      declarations: [LikeWidgetComponent],
+      providers: [UniqueIdService]
     })
-    .compileComponents();
-  });
+      .compileComponents();
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(LikeWidgetComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
+    const component = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 });
