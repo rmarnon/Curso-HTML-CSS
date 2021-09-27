@@ -44,4 +44,13 @@ describe(LikeWidgetComponent.name, () => {
       component.like();
     });
 
+  it(`#${LikeWidgetComponent.prototype.like.name}
+    Should trigger emission when called using SPY`, () => {
+      spyOn(component.liked, 'emit');
+      fixture.detectChanges();
+      component.like();
+
+      expect(component.liked.emit).toHaveBeenCalled();
+    });
+
 });
