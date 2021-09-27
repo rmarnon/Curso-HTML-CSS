@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing';
 import { LikeWidgetComponent } from './like-widget.component';
 import { LikeWidgetModule } from './like-widget.module';
 
@@ -8,7 +8,11 @@ describe(LikeWidgetComponent.name, () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LikeWidgetModule]
+      imports: [LikeWidgetModule],
+      providers: [{
+        provide: ComponentFixtureAutoDetect,
+        useValue: true
+      }]
     })
       .compileComponents();
 
@@ -22,7 +26,7 @@ describe(LikeWidgetComponent.name, () => {
 
   it('Shoyld auto generate ID when is input property is missing', () => {
     const component = fixture.componentInstance;
-    fixture.detectChanges();
+    //fixture.detectChanges();
 
     expect(component.id).toBeTruthy()
   });
@@ -32,7 +36,7 @@ describe(LikeWidgetComponent.name, () => {
     const id = 'someId';
     component.id = id;
 
-    fixture.detectChanges();
+    //fixture.detectChanges();
     expect(component.id).toBe(id);
   });
 
