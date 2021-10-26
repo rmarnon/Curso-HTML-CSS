@@ -30,4 +30,15 @@ describe(PhotoFrameComponent.name, () => {
     expect(times).toBe(1);
   }));
 
+  it('Should trigger (@Output liked) two times when called outside debounce time', fakeAsync(() => {
+    fixture.detectChanges();
+    let times = 0;
+    component.liked.subscribe(() => times++);
+    component.like();
+    tick(500);
+    component.like();
+    tick(500);
+    expect(times).toBe(2);
+  }));
+
 });
