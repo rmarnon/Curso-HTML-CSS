@@ -26,7 +26,7 @@ describe(LikeWidgetComponent.name, () => {
     expect(component.id).toBeTruthy()
   });
 
-  it('Should NOT auto-generate ID during ngOnInit when (@Input id) is assigned', () =>{
+  it('Should NOT auto-generate ID during ngOnInit when (@Input id) is assigned', () => {
     const id = 'someId';
     component.id = id;
 
@@ -36,21 +36,52 @@ describe(LikeWidgetComponent.name, () => {
 
   it(`#${LikeWidgetComponent.prototype.like.name}
     Should trigger (@Output liked) when called`, (done) => {
-      fixture.detectChanges();
-      component.liked.subscribe(() => {
-        expect(true).toBeTrue();
-        done();
-      });
-      component.like();
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      expect(true).toBeTrue();
+      done();
     });
+    component.like();
+  });
 
   it(`#${LikeWidgetComponent.prototype.like.name}
     Should trigger (@Output liked) when called using SPY`, () => {
-      spyOn(component.liked, 'emit');
-      fixture.detectChanges();
-      component.like();
+    spyOn(component.liked, 'emit');
+    fixture.detectChanges();
+    component.like();
 
-      expect(component.liked.emit).toHaveBeenCalled();
+    expect(component.liked.emit).toHaveBeenCalled();
+  });
+
+  it(`(D) Should display number of likes when clicked`, done => {
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent.trim()).toBe('1');
+      done();
     });
+
+    const likeWidgetContainerEl: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    likeWidgetContainerEl.click();
+  });
+
+  it(`(D) Should display number of likes when Enter key is pressed`, done => {
+    fixture.detectChanges();
+    component.liked.subscribe(() => {
+      component.likes++;
+      fixture.detectChanges();
+
+      const counterEl: HTMLElement = fixture.nativeElement.querySelector('.like-counter');
+      expect(counterEl.textContent.trim()).toBe('1');
+      done();
+    });
+
+    const likeWidgetContainerEl: HTMLElement = fixture.nativeElement.querySelector('.like-widget-container');
+    const event = new KeyboardEvent('keyup', { key: 'Enter' });
+    likeWidgetContainerEl.dispatchEvent(event);
+  });
 
 });
