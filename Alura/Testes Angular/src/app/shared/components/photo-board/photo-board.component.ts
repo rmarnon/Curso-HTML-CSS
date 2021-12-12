@@ -13,7 +13,7 @@ export class PhotoBoardComponent implements OnChanges {
 
   public ngOnChanges(changes: SimpleChanges): void {
     if (changes.photos) {
-      this.rows = this.groupColumns(changes.Photo.currentValue);
+      this.rows = this.groupColumns(changes.photos.currentValue);
     }
   }
 
@@ -21,7 +21,7 @@ export class PhotoBoardComponent implements OnChanges {
     const newRows = [];
     const step = 4;
     for (let index = 0; index < photos.length; index += step) {
-      newRows.push(photos.splice(index, index + step))
+      newRows.push(photos.slice(index, index + step))
     }
 
     return newRows;

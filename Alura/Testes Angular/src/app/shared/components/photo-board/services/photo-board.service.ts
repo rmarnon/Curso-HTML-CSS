@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Photo } from '../interfaces/photo';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PhotoBoardService {
 
   constructor(private readonly httpClient: HttpClient) {}
