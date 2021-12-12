@@ -25,6 +25,24 @@ describe(ActionDirective.name, () => {
     expect(component.hasEvent()).toBeTrue();
   });
 
+  it(`(D) (@Output appAction) should emit event with payload when clicked`, () => {
+    const divEl: HTMLLIElement = fixture.nativeElement.querySelector('.dummy-component');
+    const event = new Event('click');
+    divEl.dispatchEvent(event);
+    expect(component.hasEvent()).toBeTrue();
+  });
+
+  it(`(D) (@Output appAction) should emit event with payload when clicked or Enter key pressed`, () => {
+    const divEl: HTMLLIElement = fixture.nativeElement.querySelector('.dummy-component');
+    const clickEvent = new Event('click');
+    const keyboardEvent = new KeyboardEvent('keyup', { key: 'Enter' });
+    divEl.dispatchEvent(clickEvent);
+    expect(component.hasEvent()).withContext('Click event').toBeTrue();
+    component.resetForNewExpectation();
+    divEl.dispatchEvent(keyboardEvent);
+    expect(component.hasEvent()).withContext('Keyboard event "keyup"').toBeTrue();
+  });
+
 });
 
 @Component({
@@ -40,5 +58,9 @@ class ActionDirectiveTestComponent {
 
   public hasEvent(): boolean {
     return !!this.event;
+  }
+
+  public resetForNewExpectation(): void {
+    this.event = null;
   }
 }
