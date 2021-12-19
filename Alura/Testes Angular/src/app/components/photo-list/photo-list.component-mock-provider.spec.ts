@@ -7,6 +7,7 @@ import { buildPhotoList } from '../../shared/components/photo-board/test/build-p
 import { of, Observable } from 'rxjs';
 import { PhotoBoardService } from '../../shared/components/photo-board/services/photo-board.service';
 import { Photo } from '../../shared/components/photo-board/interfaces/photo';
+import { PhotoBoardMockService } from 'src/app/shared/components/photo-board/services/photo-board-mock.service';
 
 describe(PhotoListComponent.name + ' Mock provider', () => {
   let component: PhotoListComponent;
@@ -21,17 +22,13 @@ describe(PhotoListComponent.name + ' Mock provider', () => {
       providers: [
         {
           provide: PhotoBoardService,
-          useValue: {
-            getPhotos(): Observable<Photo[]> {
-              return of(buildPhotoList());
-            }
-          }
-        }]
+          useClass: PhotoBoardMockService
+        }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(PhotoListComponent);
     component = fixture.componentInstance;
-
   });
 
   it('should create', () => {
